@@ -1,0 +1,60 @@
+---
+title: "Ch10_3_regress_age.Rmd"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+### Based on: Ch10 (Regression)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### 01-initalize
+```{r}
+library(tidyverse)
+library(here)
+library(moderndive)
+
+here("moderndive")# /home/jim/code/textR/moderndive/
+```
+
+
+#### 02-prepare dataset 
+```{r}
+
+evals_ch5 <- evals %>%
+  select(ID, score, bty_avg, age)
+glimpse(evals_ch5)
+```
+
+
+####03-look at data
+```{r}
+ggplot(evals_ch5, aes(x = age, y = score)) +
+  geom_point() +
+  labs(x = "age", y = "Teaching Score",
+       title = "Relationship between teaching and agee scores") +  
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+####04-run the regression
+```{r}
+score_model <- lm(score ~ age, data = evals_ch5)
+
+score_model
+summary(score_model)
+```
+
+####05-check conditions LINE (see Ch10.3)
+```{r}
+# use broom
+
+
+
+
+knitr::knit_exit()
+```
+
+```
+
+
